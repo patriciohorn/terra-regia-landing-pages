@@ -1,0 +1,43 @@
+---
+import { cn } from "../../lib/utils";
+import { cva } from "class-variance-authority";
+const { href, variant, size, class: className, ...rest } = Astro.props;
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-1.5 shadow-xs border border-2 rounded-full font-medium cursor-pointer text-base hover:-translate-y-[0.5px] hover:shadow-sm transition-all duration-200 ease-in-out active:translate-y-0",
+  {
+    variants: {
+      variant: {
+        primary:
+          "bg-brand-500 text-white border-brand-500 hover:bg-brand-700 hover:border-brand-700 hover:shadow-sm",
+        secondary:
+          "bg-brand-50 border-brand-100 text-brand-700 hover:bg-brand-100",
+      },
+      size: {
+        md: "px-4 py-2.5",
+        lg: "px-[18px] py-3",
+      },
+    },
+    defaultVariants: {
+      variant: "primary",
+      size: "lg",
+    },
+  },
+);
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={cn(buttonVariants({ variant, size, className }))}
+      {...rest}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button class={cn(buttonVariants({ variant, size }))}>
+      <slot />
+    </button>
+  )
+}

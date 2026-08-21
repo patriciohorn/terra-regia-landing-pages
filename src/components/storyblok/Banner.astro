@@ -1,0 +1,74 @@
+---
+import { storyblokEditable } from "@storyblok/astro";
+import { sbImage } from "../../lib/storyblokImage";
+import SocialLinks from "../ui/SocialLinks.astro";
+
+const { blok } = Astro.props;
+
+const logo = blok.logo?.filename;
+const brandName = blok.brand_name || "terraRegia";
+---
+
+<div {...storyblokEditable(blok)} class="pt-4">
+  <div
+    class="grid grid-cols-[auto_1fr] items-center
+           sm:grid-cols-[1fr_auto_1fr]
+           rounded-lg sm:rounded-2xl
+           border border-accent-200 bg-accent-50
+           px-4 py-2.5"
+  >
+    <!-- Logo -->
+    <a
+      href="/"
+      class="hidden sm:flex col-start-1 row-start-1 justify-self-start
+             rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-500"
+      aria-label={`${brandName} — inicio`}
+    >
+      {
+        logo ? (
+          <img
+            src={sbImage(logo, 240)}
+            alt={blok.logo.alt || brandName}
+            width="96"
+            height="24"
+            class="h-6 w-auto"
+            loading="eager"
+          />
+        ) : (
+          <span class="text-base font-semibold tracking-tight text-brand-900">
+            {brandName}
+          </span>
+        )
+      }
+    </a>
+
+    <!-- Mensaje -->
+    <div
+      class="col-span-2 row-start-2 text-center text-sm sm:text-base font-medium
+               sm:col-span-1 sm:col-start-2 sm:row-start-1"
+    >
+      {
+        blok.message_link ? (
+          <a
+            href={blok.message_link}
+            class="text-sm text-accent-700 transition-opacity duration 200 ease-in-out hover:opacity/70"
+          >
+            {blok.message}
+          </a>
+        ) : (
+          <p class="text-sm text-accent-700 ">{blok.message}</p>
+        )
+      }
+    </div>
+
+    <!-- Social Links -->
+    <div class="hidden sm:flex justify-end">
+      <SocialLinks
+        instagramUrl={blok.instagram_url}
+        facebookUrl={blok.facebook_url}
+        youtubeUrl={blok.youtube_url}
+        linkedinUrl={blok.linkedin_url}
+      />
+    </div>
+  </div>
+</div>

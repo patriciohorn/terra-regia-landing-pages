@@ -12,8 +12,14 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@lucide/astro": "^1.33.0",
+    "@storyblok/astro": "^10.3.0",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.2.2",
-    "tailwindcss": "^4.3.3"
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.3",
+    "vite": "^8.2.1"
   }
 }

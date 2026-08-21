@@ -1,0 +1,51 @@
+---
+import Facebook from "./icons/Facebook.astro";
+import Instagram from "./icons/Instagram.astro";
+import LinkedIn from "./icons/LinkedIn.astro";
+import Youtube from "./icons/Youtube.astro";
+
+const {
+  instagramUrl,
+  facebookUrl,
+  youtubeUrl,
+  linkedinUrl,
+  class: className = "",
+} = Astro.props;
+
+const socialLinks = [
+  {
+    name: "Instagram",
+    href: instagramUrl,
+    icon: "instagram",
+  },
+  {
+    name: "Facebook",
+    href: facebookUrl,
+    icon: "facebook",
+  },
+  {
+    name: "YouTube",
+    href: youtubeUrl,
+    icon: "youtube",
+  },
+].filter((social) => social.href);
+---
+
+<div class="flex items-center gap-4">
+  {
+    socialLinks.map((social) => (
+      <a
+        href={social.href}
+        target="_blank"
+        rel="noopener no referrer"
+        aria-label={`Visitar ${social.name}`}
+        class="size-5 text-accent-700 hover:opacity-90"
+      >
+        {social.icon === "instagram" && <Instagram />}
+        {social.icon === "facebook" && <Facebook />}
+        {social.icon === "youtube" && <Youtube />}
+        {social.icon === "linkedin" && <LinkedIn />}
+      </a>
+    ))
+  }
+</div>

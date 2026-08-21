@@ -1,0 +1,24 @@
+---
+import { sbImage, sbSrcSet } from "../../lib/storyblokImage";
+const { blok } = Astro.props;
+const bgImage = blok.image?.filename;
+---
+
+<div
+  class="relative aspect-4/5 rounded-3xl overflow-hidden flex flex-col justify-end p-6 sm:p-8 shadow-sm"
+>
+  <img
+    src={sbImage(bgImage, 1600)}
+    srcset={sbSrcSet(bgImage)}
+    class="absolute inset-0 w-full h-full object-center object-cover"
+    width="832"
+    height="1064"
+  />
+  <div
+    class="absolute inset-0 w-full h-full bg-linear-to-t from-black/50 to-black/0"
+  >
+  </div>
+  <div class="relative z-10 text-center text-white">
+    <p class="text-xl sm:text-2xl">{blok.label}</p>
+  </div>
+</div>
