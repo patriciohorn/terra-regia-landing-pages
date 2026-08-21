@@ -48,6 +48,9 @@ export default defineConfig({
         highlightsProject: "components/storyblok/HighlightsProject",
         highlightItem: "components/storyblok/HighlightItem",
         amenidades: "components/storyblok/Amenidades",
+        projectOverview: "components/storyblok/ProjectOverview",
+        stats: "components/storyblok/Stats",
+        statItem: "components/storyblok/StatItem",
       },
 
       apiOptions: {

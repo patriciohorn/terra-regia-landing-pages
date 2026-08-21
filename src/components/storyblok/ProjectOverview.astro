@@ -1,0 +1,28 @@
+---
+import HeadlineTwo from "@components/ui/HeadlineTwo.astro";
+import { sbImage, sbSrcSet } from "../../lib/storyblokImage";
+import Button from "@components/ui/Button.astro";
+const { blok } = Astro.props;
+const bgImage = blok.image?.filename;
+---
+
+<section class="py-16 sm:py-28">
+  <div class="grid sm:grid-cols-12 gap-x-16 gap-y-12">
+    <div class="sm:col-span-4 space-y-6">
+      <HeadlineTwo label={blok.headline} />
+      <p class="text-lg">{blok.description}</p>
+      <Button href="" variant="secondary">Conoce la casa muestra</Button>
+    </div>
+    <div
+      class="relative sm:col-start-5 sm:col-span-8 rounded-3xl overflow-hidden aspect-video"
+    >
+      <img
+        src={sbImage(bgImage, 840)}
+        srcset={sbSrcSet(bgImage)}
+        class="absolute inset-0 w-full h-full object-center object-cover"
+        width="840"
+        height="473"
+      />
+    </div>
+  </div>
+</section>
