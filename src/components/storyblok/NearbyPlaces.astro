@@ -1,0 +1,10 @@
+---
+import Badge from "@components/ui/Badge.astro";
+const { name, time } = Astro.props;
+---
+
+<div class="flex gap-2 items-center">
+  <p>{name}</p>
+  <Badge size="sm">{time}</Badge>
+  <!-- <p class="text-xs text-neutral-500">{time}</p> -->
+</div>

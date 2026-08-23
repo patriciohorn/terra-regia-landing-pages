@@ -16,39 +16,41 @@ const bgImage = blok.background_image?.filename;
 ---
 
 <section {...storyblokEditable(blok)} class="py-16 sm:py-28">
-  <div class="relative p-12 sm:p-16 rounded-3xl overflow-hidden shadow-lg">
-    <img
-      src={sbImage(bgImage, 1600)}
-      srcset={sbSrcSet(bgImage)}
-      class="absolute inset-0 w-full h-full object-cover object-center"
-      ]
-      width="1400"
-      height="800"
-    />
-    <div class="absolute inset-0 bg-black/50"></div>
-    <div class="relative z-10 flex flex-col gap-10">
-      <div class="flex flex-col gap-8">
-        <h2 class="text-5xl font-medium text-white">
-          {blok.headline}
-        </h2>
-        <div class="flex gap-12">
-          {
-            blok.highlights.map(({ label, value }: PromoHighlight) => (
-              <PromoHighlight label={label} value={value} />
-            ))
-          }
+  <div class="section-container">
+    <div class="relative p-12 sm:p-16 rounded-3xl overflow-hidden shadow-lg">
+      <img
+        src={sbImage(bgImage, 1600)}
+        srcset={sbSrcSet(bgImage)}
+        class="absolute inset-0 w-full h-full object-cover object-center"
+        ]
+        width="1400"
+        height="800"
+      />
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative z-10 flex flex-col gap-10">
+        <div class="flex flex-col gap-8">
+          <h2 class="text-5xl font-medium text-white">
+            {blok.headline}
+          </h2>
+          <div class="flex gap-12">
+            {
+              blok.highlights.map(({ label, value }: PromoHighlight) => (
+                <PromoHighlight label={label} value={value} />
+              ))
+            }
+          </div>
         </div>
-      </div>
-      <div class="space-y-4">
-        <Button
-          href={`https://wa.me/${siteConfig.whatsapp}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <WhatsappIcon class="w-4 h-4 text-white" />
-          {blok.cta_label}
-        </Button>
-        <p class="text-sm text-neutral-50 max-w-[60ch]">{blok.disclaimer}</p>
+        <div class="space-y-4">
+          <Button
+            href={`https://wa.me/${siteConfig.whatsapp}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <WhatsappIcon class="w-4 h-4 text-white" />
+            {blok.cta_label}
+          </Button>
+          <p class="text-sm text-neutral-50 max-w-[60ch]">{blok.disclaimer}</p>
+        </div>
       </div>
     </div>
   </div>

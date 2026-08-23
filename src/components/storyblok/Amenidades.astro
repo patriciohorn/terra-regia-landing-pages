@@ -11,49 +11,51 @@ console.log("SVG", blok);
 ---
 
 <section {...storyblokEditable(blok)} class="py-16 sm:py-28">
-  <div class="grid sm:grid-cols-2 items-center gap-12 sm:gap-20">
-    <div class="sm:order-2 space-y-8">
-      <div class="space-y-4">
-        <Eyebrow label="amenidades" />
-        <HeadlineTwo
-          label="Pensadas para brindarte un entorno de vida excepcional"
-        />
-        <p class="text-base sm:text-lg">{blok.description}</p>
+  <div class="section-container">
+    <div class="grid sm:grid-cols-2 items-center gap-12 sm:gap-20">
+      <div class="sm:order-2 space-y-8">
+        <div class="space-y-4">
+          <Eyebrow label="amenidades" />
+          <HeadlineTwo
+            label="Pensadas para brindarte un entorno de vida excepcional"
+          />
+          <p class="text-base sm:text-lg">{blok.description}</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 max-w-md">
+          {
+            blok.amenities.map((amenityKey: string) => {
+              const amenity =
+                amenitiesIcons[amenityKey as keyof typeof amenitiesIcons];
+
+              if (!amenity) return null;
+
+              return (
+                <div class="flex items-center gap-4">
+                  <Image src={amenity.icon} alt="" />
+
+                  <span class="text-base">{amenity.label}</span>
+                </div>
+              );
+            })
+          }
+        </div>
       </div>
-      <div class="grid grid-cols-2 gap-4 max-w-md">
+      <div class="sm:order-1 grid sm:grid-cols-2 sm:grid-rows-2 gap-8">
         {
-          blok.amenities.map((amenityKey: string) => {
-            const amenity =
-              amenitiesIcons[amenityKey as keyof typeof amenitiesIcons];
-
-            if (!amenity) return null;
-
-            return (
-              <div class="flex items-center gap-4">
-                <Image src={amenity.icon} alt="" />
-
-                <span class="text-base">{amenity.label}</span>
-              </div>
-            );
-          })
+          blok.gallery.map(({ amenity, image }: any) => (
+            <div class="relative aspect-square overflow-hidden rounded-3xl shadow-sm">
+              <img
+                src={sbImage(image.filename, 608)}
+                srcset={sbSrcSet(image.filename)}
+                class="absolute inset-0 w-full h-full object-center object-cover"
+                width="608"
+                height="608"
+              />
+              <Badge class="absolute bottom-4 left-4">{amenity}</Badge>
+            </div>
+          ))
         }
       </div>
-    </div>
-    <div class="sm:order-1 grid sm:grid-cols-2 sm:grid-rows-2 gap-8">
-      {
-        blok.gallery.map(({ amenity, image }: any) => (
-          <div class="relative aspect-square overflow-hidden rounded-3xl shadow-sm">
-            <img
-              src={sbImage(image.filename, 608)}
-              srcset={sbSrcSet(image.filename)}
-              class="absolute inset-0 w-full h-full object-center object-cover"
-              width="608"
-              height="608"
-            />
-            <Badge class="absolute bottom-4 left-4">{amenity}</Badge>
-          </div>
-        ))
-      }
     </div>
   </div>
 </section>

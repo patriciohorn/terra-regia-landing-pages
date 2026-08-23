@@ -51,6 +51,9 @@ export default defineConfig({
         projectOverview: "components/storyblok/ProjectOverview",
         stats: "components/storyblok/Stats",
         statItem: "components/storyblok/StatItem",
+        ubicacion: "components/storyblok/UbicacionSection",
+        nearbyCategory: "components/storyblok/NearbyCategory",
+        nearbyPlaces: "components/Storyblok/NearbyPlaces",
       },
 
       apiOptions: {

@@ -9,83 +9,85 @@ const bgImage = blok.background_image?.filename;
 ---
 
 <section {...storyblokEditable(blok)} class="py-12 sm:py-20">
-  <div
-    class="relative min-h-[90svh] rounded-3xl overflow-hidden grid py-8 sm:py-12"
-  >
-    {
-      bgImage && (
-        <img
-          src={sbImage(bgImage, 1600)}
-          srcset={sbSrcSet(bgImage)}
-          class="absolute inset-0 w-full h-full object-center object-cover"
-          sizes="100vw"
-          fetchpriority="high"
-          decoding="async"
-          width="1600"
-          height="900"
-        />
-      )
-    }
-
-    <div class="absolute inset-0 bg-black/50"></div>
+  <div class="max-w-352 mx-auto">
     <div
-      class="relative z-10 flex flex-col sm:flex-row gap-12 justify-between items-center px-6 sm:px-16"
+      class="relative min-h-[90svh] rounded-3xl overflow-hidden grid py-8 sm:py-12"
     >
-      <!-- Content -->
-      <div class="flex flex-col justify-center gap-5 sm:gap-6 text-white">
-        <h1 class="text-[40px] sm:text-6xl font-semibold leading-[1.1]">
-          {blok.headline}
-        </h1>
-        <p class="text-base sm:text-xl leading-normal">{blok.description}</p>
-        <div class="sm:mt-4 w-full sm:w-fit">
-          <Button href="#modelos" variant="secondary" size="lg">
-            {blok.cta_label}
-            <ArrowRight class="w-5 h-5" />
-          </Button>
-        </div>
-      </div>
+      {
+        bgImage && (
+          <img
+            src={sbImage(bgImage, 1600)}
+            srcset={sbSrcSet(bgImage)}
+            class="absolute inset-0 w-full h-full object-center object-cover"
+            sizes="100vw"
+            fetchpriority="high"
+            decoding="async"
+            width="1600"
+            height="900"
+          />
+        )
+      }
 
-      <!-- Form -->
+      <div class="absolute inset-0 bg-black/50"></div>
       <div
-        class="max-w-[420px] flex flex-col gap-6 px-4 sm:px-6 py-8 bg-neutral-50 border border-neutral-200 rounded-2xl"
+        class="relative z-10 flex flex-col sm:flex-row gap-12 justify-between items-center px-6 sm:px-16"
       >
-        <div class="">
-          <h3 class="text-lg sm:text-xl font-medium">
-            Recibe información del desarrollo
-          </h3>
-          <p class="mt-2 text-base text-neutral-500">
-            Déjanos tus datos y un asesor te compartirá precios, disponibilidad
-            y opciones de compra
-          </p>
+        <!-- Content -->
+        <div class="flex flex-col justify-center gap-5 sm:gap-6 text-white">
+          <h1 class="text-[40px] sm:text-6xl font-semibold leading-[1.1]">
+            {blok.headline}
+          </h1>
+          <p class="text-base sm:text-xl leading-normal">{blok.description}</p>
+          <div class="sm:mt-4 w-full sm:w-fit">
+            <Button href="#modelos" variant="secondary" size="lg">
+              {blok.cta_label}
+              <ArrowRight class="w-5 h-5" />
+            </Button>
+          </div>
         </div>
-        <form class="flex flex-col gap-3">
-          <input
-            placeholder="Nombre"
-            name="nombre"
-            class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
-          />
-          <input
-            placeholder="Apellido"
-            name="apellido"
-            class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
-          />
-          <input
-            placeholder="Whatsapp"
-            name="whatsapp"
-            class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
-          />
-          <input
-            placeholder="Email"
-            name="email"
-            class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
-          />
-          <Button type="submit">
-            <span class="hidden sm:inline"
-              >Consultar precios y disponibilidad</span
-            >
-            <span class="inline sm:hidden">Consultar disponibilidad</span>
-          </Button>
-        </form>
+
+        <!-- Form -->
+        <div
+          class="max-w-[420px] flex flex-col gap-6 px-4 sm:px-6 py-8 bg-neutral-50 border border-neutral-200 rounded-2xl"
+        >
+          <div class="">
+            <h3 class="text-lg sm:text-xl font-medium">
+              Recibe información del desarrollo
+            </h3>
+            <p class="mt-2 text-base text-neutral-500">
+              Déjanos tus datos y un asesor te compartirá precios,
+              disponibilidad y opciones de compra
+            </p>
+          </div>
+          <form class="flex flex-col gap-3">
+            <input
+              placeholder="Nombre"
+              name="nombre"
+              class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+            />
+            <input
+              placeholder="Apellido"
+              name="apellido"
+              class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+            />
+            <input
+              placeholder="Whatsapp"
+              name="whatsapp"
+              class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+            />
+            <input
+              placeholder="Email"
+              name="email"
+              class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+            />
+            <Button type="submit">
+              <span class="hidden sm:inline"
+                >Consultar precios y disponibilidad</span
+              >
+              <span class="inline sm:hidden">Consultar disponibilidad</span>
+            </Button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

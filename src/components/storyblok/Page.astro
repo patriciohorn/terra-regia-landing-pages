@@ -5,7 +5,7 @@ const { blok } = Astro.props;
 ---
 
 <main {...storyblokEditable(blok)}>
-  <div class="px-4 sm:px-8 mx-auto">
+  <div>
     {blok.body?.map((blok: SbBlokData) => <StoryblokComponent blok={blok} />)}
   </div>
 </main>

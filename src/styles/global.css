@@ -21,3 +21,10 @@
   --color-accent-500: #a38555;
   --color-accent-700: #695037;
 }
+
+@utility section-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}

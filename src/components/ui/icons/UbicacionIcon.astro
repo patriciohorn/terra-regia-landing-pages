@@ -1,0 +1,34 @@
+---
+import { ShoppingCart } from "@lucide/astro";
+import { GraduationCapIcon } from "@lucide/astro";
+import { CrossIcon } from "@lucide/astro";
+const { label } = Astro.props;
+const icons = {
+  "plazas-comerciales": ShoppingCart,
+  colegios: GraduationCapIcon,
+  "centros-medicos": CrossIcon,
+};
+---
+
+<div class="relative w-12 h-12 rounded-full flex items-center justify-center">
+  <div class="bg-brand-50 absolute w-full h-full rounded-full"></div>
+  <div
+    class="relative z-10 rounded-full bg-brand-100 flex items-center justify-center aspect-square w-10 h-10"
+  >
+    {
+      label === "Plazas comerciales" && (
+        <ShoppingCart class="w-6 h-6 text-brand-700" />
+      )
+    }
+    {
+      label === "Colegios" && (
+        <GraduationCapIcon class="w-6 h-6 text-brand-600" />
+      )
+    }
+    {
+      label === "Centros Médicos" && (
+        <CrossIcon class="w-6 h-6 text-brand-600" />
+      )
+    }
+  </div>
+</div>

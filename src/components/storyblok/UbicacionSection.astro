@@ -1,0 +1,42 @@
+---
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import HeadlineTwo from "@components/ui/HeadlineTwo.astro";
+import NearbyCategory from "./NearbyCategory.astro";
+const { blok } = Astro.props;
+---
+
+<section id="#ubicacion" class="py-12 sm:py-28">
+  <div class="section-container space-y-12 sm:space-y-20">
+    <!-- Header -->
+    <div class="space-y-5 sm:space-y-6">
+      <div class="space-y-3 sm:space-y-4">
+        <Eyebrow label={blok.eyebrow} />
+        <HeadlineTwo label={blok.headline} class="max-w-[40ch]" />
+      </div>
+      <p class="text-base sm:text-xl max-w-[65ch]">{blok.description}</p>
+    </div>
+    <!-- Content -->
+    <div class="grid sm:grid-cols-12 items-center gap-x-16 gap-y-12">
+      <div
+        class="sm:order-2 sm:col-span-8 aspect-4/3 rounded-sm overflow-hidden shadow-lg"
+      >
+        <iframe
+          src={blok.map}
+          width="800"
+          height="600"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          class="w-full h-full"
+          referrerpolicy="strict-origin-when-cross-origin"></iframe>
+      </div>
+      <div class="flex flex-col gap-12 sm:col-span-4">
+        {
+          blok.nearby_categories.map((category: any) => (
+            <NearbyCategory blok={category} />
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
