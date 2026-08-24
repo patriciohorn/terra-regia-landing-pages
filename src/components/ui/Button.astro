@@ -4,7 +4,7 @@ import { cva } from "class-variance-authority";
 const { href, variant, size, class: className, ...rest } = Astro.props;
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-1.5 shadow-xs border border-2 rounded-full font-medium cursor-pointer text-base hover:-translate-y-[0.5px] hover:shadow-sm transition-all duration-200 ease-in-out active:translate-y-0",
+  "inline-flex items-center justify-center gap-1.5 shadow-xs border border-2 rounded-full font-medium cursor-pointer text-base hover:-translate-y-[0.5px] hover:shadow-sm transition-all duration-200 ease-in-out active:translate-y-0 w-full ",
   {
     variants: {
       variant: {
@@ -14,6 +14,7 @@ const buttonVariants = cva(
           "bg-brand-50 border-brand-100 text-brand-700 hover:bg-brand-100",
       },
       size: {
+        sm: "px-2.5 py-1.5",
         md: "px-4 py-2.5",
         lg: "px-[18px] py-3",
       },

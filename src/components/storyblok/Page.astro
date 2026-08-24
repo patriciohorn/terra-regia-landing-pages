@@ -2,10 +2,32 @@
 import { storyblokEditable, type SbBlokData } from "@storyblok/astro";
 import StoryblokComponent from "@storyblok/astro/StoryblokComponent.astro";
 const { blok } = Astro.props;
+
+const sectionIds = {
+  disponibilidad: "lotificacion",
+  amenidades: "amenidades",
+  ubicacion: "ubicacion",
+} as const;
+
+const navItems =
+  blok.body
+    ?.filter((section: SbBlokData) => section.show_in_navbar)
+    .map((section: SbBlokData) => ({
+      label: section.nav_label,
+      href: `#${sectionIds[section.component as keyof typeof sectionIds]}`,
+    })) ?? [];
 ---
 
 <main {...storyblokEditable(blok)}>
   <div>
-    {blok.body?.map((blok: SbBlokData) => <StoryblokComponent blok={blok} />)}
+    {
+      blok.body?.map((section: SbBlokData) =>
+        section.component === "navigation" ? (
+          <StoryblokComponent blok={section} navItems={navItems} />
+        ) : (
+          <StoryblokComponent blok={section} />
+        ),
+      )
+    }
   </div>
 </main>

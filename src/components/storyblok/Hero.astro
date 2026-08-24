@@ -8,8 +8,8 @@ const { blok } = Astro.props;
 const bgImage = blok.background_image?.filename;
 ---
 
-<section {...storyblokEditable(blok)} class="py-12 sm:py-20">
-  <div class="max-w-352 mx-auto">
+<section {...storyblokEditable(blok)} class="py-4">
+  <div class="max-w-352 mx-auto px-4">
     <div
       class="relative min-h-[90svh] rounded-3xl overflow-hidden grid py-8 sm:py-12"
     >
@@ -38,8 +38,13 @@ const bgImage = blok.background_image?.filename;
             {blok.headline}
           </h1>
           <p class="text-base sm:text-xl leading-normal">{blok.description}</p>
-          <div class="sm:mt-4 w-full sm:w-fit">
-            <Button href="#modelos" variant="secondary" size="lg">
+          <div class="sm:mt-4">
+            <Button
+              href="#modelos"
+              variant="secondary"
+              size="lg"
+              class="sm:w-fit"
+            >
               {blok.cta_label}
               <ArrowRight class="w-5 h-5" />
             </Button>

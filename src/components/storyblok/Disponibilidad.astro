@@ -7,36 +7,78 @@ import Button from "@components/ui/Button.astro";
 import { CalendarIcon } from "@lucide/astro";
 
 const { blok } = Astro.props;
+const totalLotes = Number(blok.total_lotes);
+const lotesVendidos = Number(blok.lotes_vendidos);
+const lotesDisponibles = Math.max(totalLotes - lotesVendidos);
+const porcentajeVendido =
+  totalLotes > 0
+    ? Math.min(Math.max((lotesVendidos / totalLotes) * 100, 0), 100)
+    : 0;
 ---
 
-<section class="py-12 sm:py-28">
+<section id="lotificacion" class="py-12 sm:py-28 bg-brand-50 -scroll-mt-20">
   <div class="section-container space-y-12 sm:space-y-20">
-    <div class="max-w-3xl mx-auto text-center">
+    <div class="max-w-3xl space-y-3 sm:space-y-4">
       <Eyebrow label={blok.eyebrow} />
       <HeadlineTwo label={blok.headline} />
     </div>
-    <div class="grid grid-cols-12 gap-x-8">
+    <div class="grid grid-cols-1 sm:grid-cols-12 gap-8 items-start">
+      <!-- LEGEND CARD -->
       <div
-        class="rounded-3xl overflow-hidden sm:col-span-8 border border-neutral-200"
+        class="p-6 flex flex-col gap-4 bg-white sm:col-span-4 order-2 sm:order-1 rounded-3xl border border-neutral-200 w-full"
       >
-        <LotesImage image={blok.imagen} />
-      </div>
-      <div
-        class="p-6 bg-white col-span-4 rounded-3xl border border-neutral-200"
-      >
-        <h3 class="sm:text-xl">Lotes residenciales</h3>
-        <div class="">
-          <div class="relative h-2 rounded-full bg-neutral-200">
-            <div class="absolute left-0 top-0 w-[50%] bg-red-500"></div>
+        <h3 class="sm:text-lg font-medium">{blok.titulo_inventario}</h3>
+        <!-- Progress Bar -->
+        <div class="py-2">
+          <div class="flex items-baseline justify-between mb-2">
+            <p class="text-sm text-neutral-700">
+              <span class="font-medium">{lotesDisponibles}</span> de {
+                totalLotes
+              } lotes disponibles
+            </p>
+            <p class="text-sm text-neutral-500">
+              {Math.round(porcentajeVendido)}% vendido
+            </p>
+          </div>
+          <div
+            class="h-2 rounded-full overflow-hidden bg-neutral-200"
+            role="progressbar"
+            aria-valuenow={Math.round(porcentajeVendido)}
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-label={`${lotesVendidos} de ${totalLotes} lotes vendidos`}
+          >
+            <div
+              style={`--porcentaje: ${porcentajeVendido.toFixed(2)}%`}
+              class="h-full bg-accent-500 w-[var(--porcentaje)] transition-[width] duration-500"
+            >
+            </div>
           </div>
         </div>
-        {blok.inventory_items.map((item: any) => <InventoryItem item={item} />)}
+        <!-- Inentory Items -->
         <div>
-          <Button>
+          {
+            blok.inventory_items.map((item: any) => (
+              <InventoryItem item={item} />
+            ))
+          }
+        </div>
+        <div class="flex flex-col gap-3 pt-4">
+          <Button class="shrink-0">
             <CalendarIcon class="w-5 h-5" />
             Agendar cita
           </Button>
+          <p class="text-center text-sm text-neutral-500">
+            {blok.disclaimer}
+          </p>
         </div>
+      </div>
+
+      <!-- MAP -->
+      <div
+        class="order-1 sm:order-2 sm:col-span-8 relative rounded-3xl overflow-hidden border border-neutral-200 aspect-[2400/1972] sm:aspect-auto sm:h-[clamp(440px,50vw,618px)]"
+      >
+        <LotesImage image={blok.imagen} uid={blok._uid} />
       </div>
     </div>
   </div>

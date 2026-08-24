@@ -1,0 +1,127 @@
+---
+import { Image } from "astro:assets";
+// import { Icon } from "astro-icon/components";
+
+// import terraRegiaLogo from "../assets/terra-regia.svg";
+import { getSiteConfig } from "../../lib/siteConfig";
+
+interface Props {
+  projectName?: string;
+  email?: string;
+  phone?: string;
+  hours?: string;
+  address?: string;
+  mapsUrl?: string;
+}
+
+const {
+  projectName = "Rincón de la Sierra",
+  email = "ventas@terraregia.com",
+  phone = "(81) 1746 0331",
+  hours = "Lun-Dom: 9:00 am – 7:00 pm",
+  address = "Dominio Cumbres, Nuevo León, México 66036",
+  mapsUrl = "https://maps.google.com/?q=Dominio+Cumbres+Nuevo+Leon",
+} = Astro.props;
+
+const socials = [
+  { label: "Facebook", href: "#", icon: "simple-icons:facebook" },
+  { label: "Instagram", href: "#", icon: "simple-icons:instagram" },
+  { label: "X", href: "#", icon: "simple-icons:x" },
+  { label: "LinkedIn", href: "#", icon: "simple-icons:linkedin" },
+  { label: "YouTube", href: "#", icon: "simple-icons:youtube" },
+];
+
+const linkClass =
+  "text-sm hover:underline transition-colors hover:decoration-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white";
+
+const site = getSiteConfig();
+const projectLogo = site.logo_light.filename;
+---
+
+<footer class="rounded-tl-3xl rounded-tr-3xl bg-brand-900 text-white">
+  <div class="mx-auto max-w-352 px-6 py-14 md:px-16 md:py-20">
+    <!-- Top: brand block + contact columns -->
+    <div class="grid gap-12 lg:grid-cols-[minmax(0,1fr)_auto] lg:gap-20">
+      <div>
+        <Image
+          src={projectLogo}
+          alt={`Logo ${projectName}`}
+          width={320}
+          height={130}
+          class="h-auto w-56 md:w-[218px]"
+        />
+
+        <div class="mt-10 space-y-4 text-sm md:text-base">
+          <p class="font-medium">Visita nuestra oficina de ventas:</p>
+          <p class="text-neutral-200">{address}</p>
+          <a
+            href={mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={linkClass}
+          >
+            Abrir en maps
+          </a>
+        </div>
+      </div>
+
+      <dl
+        class="grid gap-x-12 gap-y-8 self-start text-sm sm:grid-cols-3 md:gap-x-16 md:text-base"
+      >
+        <div class="space-y-2">
+          <dt class="font-medium">Correo electrónico</dt>
+          <dd>
+            <a href={`mailto:${email}`} class={linkClass}>{email}</a>
+          </dd>
+        </div>
+
+        <div class="space-y-2">
+          <dt class="font-medium">Teléfono</dt>
+          <dd>
+            <a href={`tel:${phone.replace(/\D/g, "")}`} class={linkClass}>
+              {phone}
+            </a>
+          </dd>
+        </div>
+
+        <div class="space-y-2">
+          <dt class="font-medium">Horario de atención</dt>
+          <dd class="text-sm text-neutral-200">{hours}</dd>
+        </div>
+      </dl>
+    </div>
+
+    <!-- Bottom: corporate wordmark + socials -->
+    <div
+      class="mt-16 flex flex-col gap-8 md:mt-24 md:flex-row md:items-center md:justify-between"
+    >
+      <a href="https://terraregia.com" aria-label="Terra Regia">
+        <!-- <Image
+          src={terraRegiaLogo}
+          alt="Terra Regia"
+          width={240}
+          height={60}
+          class="h-auto w-44 md:w-52"
+        /> -->
+      </a>
+
+      <ul class="flex items-center gap-5">
+        {
+          socials.map((social) => (
+            <li>
+              <a
+                href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
+                class="block text-white/90 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              >
+                {/* <Icon name={social.icon} class="size-6" /> */}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</footer>

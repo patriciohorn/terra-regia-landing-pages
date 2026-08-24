@@ -1,0 +1,15 @@
+---
+import Navbar from "@components/layout/Navbar.astro";
+import { getSiteConfig } from "../../lib/siteConfig";
+
+const site = getSiteConfig();
+const { blok, navItems } = Astro.props;
+console.log(navItems);
+---
+
+<Navbar
+  logo={site.logo.filename}
+  ctaLabel={blok.cta_label}
+  ctaLink=""
+  items={navItems}
+/>

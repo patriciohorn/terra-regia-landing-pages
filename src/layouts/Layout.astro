@@ -1,10 +1,11 @@
 ---
 import "../styles/global.css";
 import { Font } from "astro:assets";
+import Footer from "@components/layout/Footer.astro";
 ---
 
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" class="scroll-smooth">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
@@ -16,5 +17,6 @@ import { Font } from "astro:assets";
   </head>
   <body class="bg-[#fafbf8] text-neutral-600">
     <slot />
+    <Footer />
   </body>
 </html>

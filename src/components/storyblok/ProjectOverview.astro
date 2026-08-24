@@ -12,7 +12,9 @@ const bgImage = blok.image?.filename;
       <div class="sm:col-span-4 space-y-6">
         <HeadlineTwo label={blok.headline} />
         <p class="text-lg">{blok.description}</p>
-        <Button href="" variant="secondary">Conoce la casa muestra</Button>
+        <div class="sm:w-fit">
+          <Button href="" variant="secondary">Conoce la casa muestra</Button>
+        </div>
       </div>
       <div
         class="relative sm:col-start-5 sm:col-span-8 rounded-3xl overflow-hidden aspect-video"

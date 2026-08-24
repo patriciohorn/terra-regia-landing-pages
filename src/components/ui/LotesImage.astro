@@ -1,40 +1,68 @@
 ---
+import { ZoomInIcon } from "@lucide/astro";
+
 interface Props {
-  image: {
-    filename: string;
-    alt?: string;
-  };
+  image: { filename: string; alt?: string };
+  uid: string;
 }
 
-const { image } = Astro.props;
+const { image, uid } = Astro.props;
+
+const dims = image.filename.match(/\/(\d+)x(\d+)\//);
+const naturalW = dims ? Number(dims[1]) : 2400;
+const naturalH = dims ? Number(dims[2]) : 1972;
+
+const src = (w: number) =>
+  `${image.filename}/m/${w}x0/filters:format(webp):quality(82)`;
+
+const largeW = 2400;
+const largeH = Math.round((largeW * naturalH) / naturalW);
 ---
 
-<div id="my-gallery">
+<div data-pswp-gallery id={`plano-${uid}`} class="h-full">
   <a
-    href={image.filename}
-    data-pswp-width="2400"
-    data-pswp-height="1972"
-    target="_blank"
+    href={src(largeW)}
+    data-pswp-width={largeW}
+    data-pswp-height={largeH}
+    class="group relative flex h-full w-full items-center justify-center bg-white cursor-pointer"
+    aria-label="Ver plano completo"
   >
     <img
-      src={image.filename}
-      width="2400"
-      height="1972"
-      alt={image.alt ?? ""}
+      src={src(1200)}
+      srcset={`${src(640)} 640w, ${src(1200)} 1200w, ${src(2400)} 2400w`}
+      sizes="(min-width: 640px) 66vw, 100vw"
+      width={naturalW}
+      height={naturalH}
+      alt={image.alt ?? "Plano de lotificación"}
       loading="lazy"
+      decoding="async"
+      class="h-full w-full object-contain object-center p-3 sm:p-5"
     />
+    <span
+      class="pointer-events-none absolute bottom-4 right-4 flex items-center gap-2 rounded-full bg-white/90 px-3 py-1.5 text-sm text-neutral-700 ring-1 ring-neutral-200 backdrop-blur-sm transition group-hover:bg-white"
+    >
+      <ZoomInIcon class="h-4 w-4" />
+      Ver plano completo
+    </span>
   </a>
+
+  <script>
+    import PhotoSwipeLightbox from "photoswipe/lightbox";
+    import "photoswipe/style.css";
+
+    document
+      .querySelectorAll<HTMLElement>("[data-pswp-gallery]")
+      .forEach((el) => {
+        new PhotoSwipeLightbox({
+          gallery: el,
+          children: "a",
+          pswpModule: () => import("photoswipe"),
+          bgOpacity: 0.92,
+          initialZoomLevel: "fit",
+          secondaryZoomLevel: 1.5,
+          maxZoomLevel: 4,
+          wheelToZoom: true,
+        }).init();
+      });
+  </script>
 </div>
-
-<script>
-  import PhotoSwipeLightbox from "photoswipe/lightbox";
-  import "photoswipe/style.css";
-
-  const lightbox = new PhotoSwipeLightbox({
-    gallery: "#my-gallery",
-    children: "a",
-    pswpModule: () => import("photoswipe"),
-  });
-
-  lightbox.init();
-</script>

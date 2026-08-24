@@ -55,6 +55,7 @@ export default defineConfig({
         nearbyCategory: "components/storyblok/NearbyCategory",
         nearbyPlaces: "components/storyblok/NearbyPlaces",
         disponibilidad: "components/storyblok/Disponibilidad",
+        navigation: "components/storyblok/Navigation",
       },
 
       apiOptions: {

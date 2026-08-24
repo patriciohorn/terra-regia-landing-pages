@@ -1,0 +1,39 @@
+---
+import { Image } from "astro:assets";
+import Button from "@components/ui/Button.astro";
+const { logo, items, ctaLabel, ctaLink } = Astro.props;
+---
+
+<nav class="sm:h-16">
+  <div class="max-w-352 mx-auto px-4">
+    <div class="grid grid-cols-2 sm:grid-cols-[1fr_auto_1fr] items-center">
+      <div class="hidden sm:flex sm:items-center sm:gap-x-8">
+        {
+          items.map((item: any) => (
+            <a
+              href={item.href}
+              class="hover:text-accent-500 duration-200 ease-in-out"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+      <div class="">
+        <Image
+          src={logo}
+          alt="Logo proyecto"
+          width={160}
+          height={64}
+          class="h-8 w-auto sm:w-40 sm:h-16"
+        />
+      </div>
+
+      <div class="hidden sm:flex sm:justify-self-end">
+        <Button href={ctaLink} size="md" variant="secondary"
+          >{ctaLabel}
+        </Button>
+      </div>
+    </div>
+  </div>
+</nav>

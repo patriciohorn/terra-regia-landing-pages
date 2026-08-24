@@ -45,10 +45,12 @@ const bgImage = blok.background_image?.filename;
             href={`https://wa.me/${siteConfig.whatsapp}`}
             target="_blank"
             rel="noopener noreferrer"
+            class="w-fit"
           >
             <WhatsappIcon class="w-4 h-4 text-white" />
             {blok.cta_label}
           </Button>
+
           <p class="text-sm text-neutral-50 max-w-[60ch]">{blok.disclaimer}</p>
         </div>
       </div>
