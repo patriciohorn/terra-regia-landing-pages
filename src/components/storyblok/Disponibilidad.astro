@@ -1,0 +1,43 @@
+---
+import Eyebrow from "@components/ui/Eyebrow.astro";
+import HeadlineTwo from "@components/ui/HeadlineTwo.astro";
+import LotesImage from "@components/ui/LotesImage.astro";
+import InventoryItem from "./InventoryItem.astro";
+import Button from "@components/ui/Button.astro";
+import { CalendarIcon } from "@lucide/astro";
+
+const { blok } = Astro.props;
+---
+
+<section class="py-12 sm:py-28">
+  <div class="section-container space-y-12 sm:space-y-20">
+    <div class="max-w-3xl mx-auto text-center">
+      <Eyebrow label={blok.eyebrow} />
+      <HeadlineTwo label={blok.headline} />
+    </div>
+    <div class="grid grid-cols-12 gap-x-8">
+      <div
+        class="rounded-3xl overflow-hidden sm:col-span-8 border border-neutral-200"
+      >
+        <LotesImage image={blok.imagen} />
+      </div>
+      <div
+        class="p-6 bg-white col-span-4 rounded-3xl border border-neutral-200"
+      >
+        <h3 class="sm:text-xl">Lotes residenciales</h3>
+        <div class="">
+          <div class="relative h-2 rounded-full bg-neutral-200">
+            <div class="absolute left-0 top-0 w-[50%] bg-red-500"></div>
+          </div>
+        </div>
+        {blok.inventory_items.map((item: any) => <InventoryItem blok={item} />)}
+        <div>
+          <Button>
+            <CalendarIcon class="w-5 h-5" />
+            Agendar cita
+          </Button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

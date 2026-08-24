@@ -53,7 +53,8 @@ export default defineConfig({
         statItem: "components/storyblok/StatItem",
         ubicacion: "components/storyblok/UbicacionSection",
         nearbyCategory: "components/storyblok/NearbyCategory",
-        nearbyPlaces: "components/Storyblok/NearbyPlaces",
+        nearbyPlaces: "components/storyblok/NearbyPlaces",
+        disponibilidad: "components/storyblok/Disponibilidad",
       },
 
       apiOptions: {
