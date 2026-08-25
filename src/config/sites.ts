@@ -22,6 +22,7 @@ export const sites = {
 
 export function resolveSite(): SiteMeta {
   const key = import.meta.env.SITE_KEY;
+  import.meta.env.SITE_KEY;
 
   if (!key) {
     throw new Error(

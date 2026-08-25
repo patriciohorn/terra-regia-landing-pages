@@ -9,13 +9,13 @@ const logo = blok.logo?.filename;
 const brandName = blok.brand_name || "terraRegia";
 ---
 
-<div {...storyblokEditable(blok)} class="py-4 px-4">
-  <div class="max-w-352 mx-auto">
+<div {...storyblokEditable(blok)} class="py-2 px-4">
+  <div class="max-w-352 mx-auto px-4">
     <div
       class="grid grid-cols-[auto_1fr] items-center
            sm:grid-cols-[1fr_auto_1fr]
-           rounded-lg sm:rounded-2xl
-           border border-accent-200 bg-accent-50
+           rounded-lg sm:rounded-xl
+           border border-brand-300 bg-brand-50
            px-4 py-2.5"
     >
       <!-- Logo -->
@@ -52,7 +52,7 @@ const brandName = blok.brand_name || "terraRegia";
           blok.message_link ? (
             <a
               href={blok.message_link}
-              class="text-sm text-accent-700 transition-opacity duration 200 ease-in-out hover:opacity/70"
+              class="text-sm text-brand-700 transition-opacity duration 200 ease-in-out hover:opacity/70"
             >
               {blok.message}
             </a>

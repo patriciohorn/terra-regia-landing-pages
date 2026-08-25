@@ -2,11 +2,12 @@
 import { Image } from "astro:assets";
 import { sbImage, sbSrcSet } from "../../lib/storyblokImage";
 import StatItem from "./StatItem.astro";
+import { storyblokEditable } from "@storyblok/astro";
 const { blok } = Astro.props;
 const bgImage = blok.bg_image?.filename;
 ---
 
-<section class="py-16 sm:py-28 bg-brand-50">
+<section class="py-16 sm:py-28 bg-brand-50" {...storyblokEditable(blok)}>
   <div class="section-container">
     <div
       class="relative rounded-3xl overflow-hidden px-16 py-28 flex flex-col gap-y-20"

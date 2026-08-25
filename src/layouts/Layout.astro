@@ -2,11 +2,22 @@
 import "../styles/global.css";
 import { Font } from "astro:assets";
 import Footer from "@components/layout/Footer.astro";
+import { resolveSite } from "../config/sites";
+import { resolveTheme } from "../config/themes";
+const site = resolveSite();
+const theme = resolveTheme(site.key);
+const themeVars = `:root{${[
+  ...Object.entries(theme.brand).map(([s, hex]) => `--brand-${s}:${hex}`),
+  ...Object.entries(theme.accent).map(([s, hex]) => `--accent-${s}:${hex}`),
+].join(";")}}`;
+console.log(site);
+console.log(themeVars);
 ---
 
 <!doctype html>
 <html lang="es-MX" class="scroll-smooth">
   <head>
+    <style is:global set:html={themeVars}></style>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -17,6 +28,6 @@ import Footer from "@components/layout/Footer.astro";
   </head>
   <body class="bg-[#fafbf8] text-neutral-600">
     <slot />
-    <Footer />
+    <!-- <Footer /> -->
   </body>
 </html>

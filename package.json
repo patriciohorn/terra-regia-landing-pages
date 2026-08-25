@@ -22,5 +22,8 @@
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
     "vite": "^8.2.1"
+  },
+  "devDependencies": {
+    "vite-plugin-mkcert": "^2.1.0"
   }
 }

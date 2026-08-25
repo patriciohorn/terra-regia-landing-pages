@@ -3,13 +3,14 @@ import { defineConfig, fontProviders } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import { storyblok } from "@storyblok/astro";
 import { loadEnv } from "vite";
+import mkcert from "vite-plugin-mkcert";
 
 const env = loadEnv("", process.cwd(), "STORYBLOK");
 
 // https://astro.build/config
 export default defineConfig({
   vite: {
-    plugins: [tailwindcss()],
+    plugins: [tailwindcss(), mkcert()],
   },
   fonts: [
     {
@@ -56,6 +57,8 @@ export default defineConfig({
         nearbyPlaces: "components/storyblok/NearbyPlaces",
         disponibilidad: "components/storyblok/Disponibilidad",
         navigation: "components/storyblok/Navigation",
+        call_to_action: "components/storyblok/CTA",
+        footer: "components/storyblok/Footer",
       },
 
       apiOptions: {

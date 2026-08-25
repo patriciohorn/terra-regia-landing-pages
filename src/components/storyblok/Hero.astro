@@ -37,7 +37,9 @@ const bgImage = blok.background_image?.filename;
           <h1 class="text-[40px] sm:text-6xl font-semibold leading-[1.1]">
             {blok.headline}
           </h1>
-          <p class="text-base sm:text-xl leading-normal">{blok.description}</p>
+          <p class="text-base sm:text-xl leading-normal max-w-[45ch]">
+            {blok.description}
+          </p>
           <div class="sm:mt-4">
             <Button
               href="#modelos"

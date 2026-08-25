@@ -5,6 +5,8 @@ import LotesImage from "@components/ui/LotesImage.astro";
 import InventoryItem from "./InventoryItem.astro";
 import Button from "@components/ui/Button.astro";
 import { CalendarIcon } from "@lucide/astro";
+import type { $brand } from "astro:schema";
+import { storyblokEditable } from "@storyblok/astro";
 
 const { blok } = Astro.props;
 const totalLotes = Number(blok.total_lotes);
@@ -16,7 +18,11 @@ const porcentajeVendido =
     : 0;
 ---
 
-<section id="lotificacion" class="py-12 sm:py-28 bg-brand-50 -scroll-mt-20">
+<section
+  id="lotificacion"
+  class="py-12 sm:py-28 bg-brand-50 -scroll-mt-20"
+  {...storyblokEditable(blok)}
+>
   <div class="section-container space-y-12 sm:space-y-20">
     <div class="max-w-3xl space-y-3 sm:space-y-4">
       <Eyebrow label={blok.eyebrow} />
@@ -41,7 +47,7 @@ const porcentajeVendido =
             </p>
           </div>
           <div
-            class="h-2 rounded-full overflow-hidden bg-neutral-200"
+            class="h-3 rounded-full overflow-hidden bg-neutral-200"
             role="progressbar"
             aria-valuenow={Math.round(porcentajeVendido)}
             aria-valuemin="0"
@@ -50,7 +56,7 @@ const porcentajeVendido =
           >
             <div
               style={`--porcentaje: ${porcentajeVendido.toFixed(2)}%`}
-              class="h-full bg-accent-500 w-[var(--porcentaje)] transition-[width] duration-500"
+              class="h-full bg-brand-700 w-[var(--porcentaje)] transition-[width] duration-500"
             >
             </div>
           </div>

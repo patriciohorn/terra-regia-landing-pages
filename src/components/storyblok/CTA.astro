@@ -1,0 +1,131 @@
+---
+import { sbImage, sbSrcSet } from "../../lib/storyblokImage";
+import Button from "@components/ui/Button.astro";
+const { blok } = Astro.props;
+const bgImage = blok.image?.filename;
+---
+
+<!-- <section class="py-12 sm:py-28">
+  <div class="section-container">
+    <div class="relative rounded-3xl overflow-hidden bg-brand-600 shadow-lg">
+      <div class="grid sm:grid-cols-2 gap-x-20 gap-y-12 items-center">
+        <div class="space-y-4 p-12">
+          <h2 class="text-white text-3xl sm:text-5xl">{blok.headline}</h2>
+          <p class="text-white text-xl">{blok.description}</p>
+
+          <div class="flex flex-col gap-6 mt-10">
+            <form class="flex flex-col gap-3">
+              <div class="flex gap-2">
+                <input
+                  placeholder="Nombre"
+                  name="nombre"
+                  class="w-full px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+                />
+                <input
+                  placeholder="Apellido"
+                  name="apellido"
+                  class="w-full px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+                />
+              </div>
+              <div class="flex gap-2">
+                <input
+                  placeholder="Whatsapp"
+                  name="whatsapp"
+                  class="w-full px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+                />
+                <input
+                  placeholder="Email"
+                  name="email"
+                  class="w-full px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+                />
+              </div>
+
+              <Button type="submit" variant="secondary">
+                <span class="hidden sm:inline"
+                  >Consultar precios y disponibilidad</span
+                >
+                <span class="inline sm:hidden">Consultar disponibilidad</span>
+              </Button>
+            </form>
+          </div>
+        </div>
+        <div class="relative">
+          <img
+            src={sbImage(bgImage, 1600)}
+            srcset={sbSrcSet(bgImage)}
+            class="w-full h-full object-center object-cover"
+            width="1600"
+            height="900"
+          />
+          <div class="absolute inset-0 w-full h-full bg-brand-500/20"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+<section class="py-12 sm:py-28">
+  <div class="section-container">
+    <div
+      class="relative rounded-3xl overflow-hidden bg-brand-600 shadow-xl p-12"
+    >
+      <img
+        src={sbImage(bgImage, 1600)}
+        srcset={sbSrcSet(bgImage)}
+        class="absolute inset-0 w-full h-full object-center object-cover"
+        width="1600"
+        height="900"
+      />
+      <div class="absolute inset-0 w-full h-full bg-black/60"></div>
+      <div
+        class="relative z-10 grid sm:grid-cols-2 gap-x-20 gap-y-12 items-center"
+      >
+        <div class="space-y-4">
+          <h2 class="text-white text-3xl sm:text-5xl">{blok.headline}</h2>
+          <p class="text-white text-xl">{blok.description}</p>
+        </div>
+        <!-- Form -->
+        <div
+          class="max-w-[420px] justify-self-end flex flex-col gap-6 px-4 sm:px-6 py-8 bg-neutral-50 border border-neutral-200 rounded-2xl"
+        >
+          <div class="">
+            <h3 class="text-lg sm:text-xl font-medium">
+              Recibe información del desarrollo
+            </h3>
+            <p class="mt-2 text-base text-neutral-500">
+              Déjanos tus datos y un asesor te compartirá precios,
+              disponibilidad y opciones de compra
+            </p>
+          </div>
+          <form class="flex flex-col gap-3">
+            <input
+              placeholder="Nombre"
+              name="nombre"
+              class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+            />
+            <input
+              placeholder="Apellido"
+              name="apellido"
+              class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+            />
+            <input
+              placeholder="Whatsapp"
+              name="whatsapp"
+              class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+            />
+            <input
+              placeholder="Email"
+              name="email"
+              class="px-4 py-3 rounded-full bg-white border border-neutral-200 text-neutral-600"
+            />
+            <Button type="submit">
+              <span class="hidden sm:inline"
+                >Consultar precios y disponibilidad</span
+              >
+              <span class="inline sm:hidden">Consultar disponibilidad</span>
+            </Button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

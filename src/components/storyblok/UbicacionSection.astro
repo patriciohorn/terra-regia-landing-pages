@@ -2,10 +2,15 @@
 import Eyebrow from "@components/ui/Eyebrow.astro";
 import HeadlineTwo from "@components/ui/HeadlineTwo.astro";
 import NearbyCategory from "./NearbyCategory.astro";
+import { storyblokEditable } from "@storyblok/astro";
 const { blok } = Astro.props;
 ---
 
-<section id="ubicacion" class="py-12 sm:py-28 -scroll-mt-20">
+<section
+  id="ubicacion"
+  class="py-12 sm:py-28 -scroll-mt-20"
+  {...storyblokEditable(blok)}
+>
   <div class="section-container space-y-12 sm:space-y-20">
     <!-- Header -->
     <div class="space-y-5 sm:space-y-6">
