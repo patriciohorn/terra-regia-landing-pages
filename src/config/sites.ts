@@ -18,6 +18,12 @@ export const sites = {
     domain: "https://alinkaresidencial.mx",
     plausibleDomain: "alinkaresidencial.mx",
   },
+  "arboladas-residencial": {
+    key: "arboladas-residencial",
+    name: "arboladas residencial",
+    domain: "https://arboladasresidencial.mx",
+    plausibleDomain: "arboladasresidencial.mx",
+  },
 } satisfies Record<string, SiteMeta>;
 
 export function resolveSite(): SiteMeta {
